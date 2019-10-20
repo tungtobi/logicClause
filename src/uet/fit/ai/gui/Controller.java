@@ -57,6 +57,11 @@ public class Controller {
     private void refresh() {
         tableTruth.getColumns().clear();
         txtPosForm.setText("");
+        txtLog.setText("");
+        txtLog.setWrapText(true);
+
+        labelResult.setTextFill(Color.web("000"));
+        labelResult.setText("Result: ???");
     }
 
     private void updateTruthTable(IExpression selected) {
@@ -88,6 +93,8 @@ public class Controller {
 
     private void add(TextField txtField, ListView<IExpression> list) {
         String str = txtField.getText();
+
+        refresh();
 
         try {
             IExpression expr = RecursiveDescentParser.parse(str);
@@ -149,9 +156,8 @@ public class Controller {
         List<IExpression> proofs = listProof.getItems();
 
         Robinson robinson = new Robinson();
-        setLabelResult(robinson.exec(premises, proofs));
 
-        txtLog.setWrapText(true);
+        setLabelResult(robinson.exec(premises, proofs));
         txtLog.setText(robinson.getLog());
     }
 

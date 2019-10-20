@@ -23,14 +23,13 @@ public class Robinson {
         /*
          * Add negative proofs into premises - G set.
          */
-        for (IExpression proof : proofs)
-            premises.add(proof.getNegative());
+        List<IExpression> gList = generateGList(premises, proofs);
 
         /*
          * Convert all expression to POS format and get all maxterms.
          */
         System.out.println("\n[Generate product of sum]");
-        List<Term> maxterms = (new TermGeneration()).exec(premises);
+        List<Term> maxterms = (new TermGeneration()).exec(gList);
 
         /*
          * Create a empty prev list.
@@ -93,6 +92,17 @@ public class Robinson {
         return false;
     }
 
+    private List<IExpression> generateGList(List<IExpression> premises, List<IExpression> proofs) {
+        List<IExpression> gList = new ArrayList<>();
+
+        gList.addAll(premises);
+
+        for (IExpression proof : proofs)
+            gList.add(proof.getNegative());
+
+        return gList;
+    }
+
     /**
      * Display the list of terms.
      *
@@ -106,18 +116,6 @@ public class Robinson {
         g.append(maxterms.get(maxterms.size() - 1));
         g.append("}\n");
         return g.toString();
-    }
-
-    /**
-     * Update the prev list of terms.
-     *
-     * @param prev list.
-     * @param cur list.
-     */
-    private void update(List<Term> prev, List<Term> cur) {
-        for (Term maxterm : cur)
-            if (!prev.contains(maxterm))
-                prev.add(maxterm);
     }
 
     public String getLog() {
