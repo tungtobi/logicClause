@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<SplitPane dividerPositions="0.5" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uet.fit.ai.gui.Controller">
+   <items>
+      <Accordion maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefWidth="250.0">
+         <panes>
+            <TitledPane animated="false" text="Premises">
+               <content>
+                  <VBox>
+                     <children>
+                        <ListView fx:id="listPremise" minWidth="-Infinity" onMouseClicked="#selectPremise" prefHeight="200.0" prefWidth="200.0" />
+                        <HBox>
+                           <children>
+                              <TextField fx:id="txtNewPremise" />
+                              <Button fx:id="btnAddPremise" mnemonicParsing="false" onAction="#addNewPremise" prefHeight="31.0" prefWidth="38.0" text="+" />
+                           </children>
+                           <padding>
+                              <Insets top="10.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </content>
+            </TitledPane>
+            <TitledPane animated="false" text="Proofs">
+               <content>
+                  <VBox>
+                     <children>
+                        <ListView fx:id="listProof" minWidth="-Infinity" onMouseClicked="#selectProof" prefHeight="200.0" prefWidth="200.0" />
+                        <HBox>
+                           <children>
+                              <TextField fx:id="txtNewProof" />
+                              <Button fx:id="btnAddProof" mnemonicParsing="false" onAction="#addNewProof" prefHeight="31.0" prefWidth="38.0" text="+" />
+                           </children>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </content>
+            </TitledPane>
+         </panes>
+      </Accordion>
+      <TabPane fx:id="tabPane" prefWidth="540.0" tabClosingPolicy="UNAVAILABLE">
+         <tabs>
+            <Tab text="Calculate">
+               <content>
+                  <VBox>
+                     <children>
+                        <HBox alignment="CENTER_LEFT">
+                           <children>
+                              <Label fx:id="labelResult" text="Result: ????" />
+                              <Region maxWidth="1.7976931348623157E308" prefHeight="31.0" HBox.hgrow="ALWAYS" />
+                              <Button fx:id="btnExec" alignment="CENTER" mnemonicParsing="false" onAction="#calculate" prefHeight="31.0" prefWidth="88.0" text="Execute &gt;" />
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </HBox>
+                        <TextArea fx:id="txtLog" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Nothing to do...">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </TextArea>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </VBox>
+               </content>
+            </Tab>
+            <Tab text="Truth Table">
+               <content>
+                  <TableView fx:id="tableTruth">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding></TableView>
+               </content>
+            </Tab>
+            <Tab text="POS Form">
+               <content>
+                  <Label fx:id="txtPosForm">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding></Label>
+               </content>
+            </Tab>
+         </tabs>
+      </TabPane>
+   </items>
+</SplitPane>
